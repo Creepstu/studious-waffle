@@ -1,0 +1,230 @@
+--[[
+	WOW STALK.
+]]--
+
+getgenv().SecureMode = true;
+local Rayfield = loadstring(game:HttpGet("https://sirius.menu/rayfield"))();
+Rayfield:Notify({Title="Note from Creepstu",Content="[RuCkGcjS] <-- Join the Discord server, okey?",Duration=math.huge,Image=4483362458,Actions={Ignore={Name="Okey!",Callback=function()
+	return;
+end}}});
+local Window = Rayfield:CreateWindow({Name="Murder Mystery 2 X Free Radio",LoadingTitle="Rayfield Interface Suite",LoadingSubtitle="the best UI Library",ConfigurationSaving={Enabled=true,FolderName=nil,FileName="MM2xFR_DataConfigure"},Discord={Enabled=true,Invite="z892VHDZ4",RememberJoins=true},KeySystem=true,KeySettings={Title="Murder Mystery 2 X Free Radio",Subtitle="Key System",Note="Join Discord server first, the pain feels so much worse.",FileName="Key",SaveKey=true,GrabKeyFromSite=false,Key={"pyTcf8ANX9uyyK9V"}}});
+local Tab = Window:CreateTab("Tab #1", 4483362458);
+local Section = Tab:CreateSection("Section Console");
+local Label = Tab:CreateLabel("Murderer: ");
+local Label2 = Tab:CreateLabel("Sheriff: ");
+local Button = Tab:CreateButton({Name="Detect Suspicious Tools",Callback=function()
+	while true do
+		for _, player in pairs(game.Players:GetPlayers()) do
+			for _, tool in pairs(player.Backpack:GetChildren()) do
+				if tool:IsA("Tool") then
+					if (tool.Name == "Knife") then
+						Label:Set("Murderer: " .. player.DisplayName .. " (@" .. player.Name .. ")");
+					elseif (tool.Name == "Revolver") then
+						Label2:Set("Sheriff: " .. player.DisplayName .. " (@" .. player.Name .. ")");
+					end
+				end
+			end
+		end
+		wait(1);
+	end
+end});
+local Section = Tab:CreateSection("Section Cheat");
+local Button = Tab:CreateButton({Name="Unbox All Crates",Callback=function()
+	local char = game.Players.LocalPlayer.Character;
+	repeat
+		local args = {[1]=game.ReplicatedStorage:WaitForChild("ShopEntries"):WaitForChild("RevolverSkins"):WaitForChild("Revolver Box #1"),[2]=game.ReplicatedStorage:WaitForChild("ShopEntries"):WaitForChild("RevolverSkins"):WaitForChild("Revolver Box #2"),[3]=game.ReplicatedStorage:WaitForChild("ShopEntries"):WaitForChild("RevolverSkins"):WaitForChild("Revolver Box #3"),[4]=game.ReplicatedStorage:WaitForChild("ShopEntries"):WaitForChild("RevolverSkins"):WaitForChild("Revolver Box #4"),[5]=game.ReplicatedStorage:WaitForChild("ShopEntries"):WaitForChild("KnifeSkins"):WaitForChild("Knife Box #1"),[6]=game.ReplicatedStorage:WaitForChild("ShopEntries"):WaitForChild("KnifeSkins"):WaitForChild("Knife Box #2"),[7]=game.ReplicatedStorage:WaitForChild("ShopEntries"):WaitForChild("KnifeSkins"):WaitForChild("Knife Box #3"),[8]=game.ReplicatedStorage:WaitForChild("ShopEntries"):WaitForChild("KnifeSkins"):WaitForChild("Knife Box #4")};
+		game.ReplicatedStorage:WaitForChild("Interactions"):WaitForChild("Server"):WaitForChild("BuyShopItem"):InvokeServer(unpack(args));
+	until char.Humanoid.Health == 0 
+end});
+local Button = Tab:CreateButton({Name="Teleport Lobby",Callback=function()
+	local SpawnLocate = game:GetService("Workspace").Lobby.Spawns.Model:FindFirstChild("SpawnLocation");
+	local char = game.Players.LocalPlayer.Character;
+	char.HumanoidRootPart.CFrame = SpawnLocate.CFrame;
+end});
+local Button = Tab:CreateButton({Name="Remove Game Hopper",Callback=function()
+	local hopper = workspace:FindFirstChild("TELEPORT");
+	if hopper then
+		hopper:Destroy();
+	end
+	for x, y in pairs(workspace:GetDescendants()) do
+		if (y.Name == "Sign") then
+			y:Destroy();
+		end
+	end
+end});
+local Button = Tab:CreateButton({Name="Collect Coins",Callback=function()
+	local char = game.Players.LocalPlayer.Character;
+	repeat
+		for x, y in pairs(workspace:GetDescendants()) do
+			if (y:IsA("Part") and (y.Name == "Coin")) then
+				char.HumanoidRootPart.CFrame = y.CFrame;
+			end
+		end
+		wait();
+	until char.Humanoid.Health == 0 
+end});
+local Section = Tab:CreateSection("Section Sliders");
+local Slider = Tab:CreateSlider({Name="Walk Speed",Range={0,116},Increment=1,Suffix="",CurrentValue=16,Flag="Slider1",Callback=function(Value)
+	game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value;
+end});
+local Slider = Tab:CreateSlider({Name="Jump Power",Range={0,150},Increment=1,Suffix="",CurrentValue=50,Flag="Slider2",Callback=function(Value)
+	game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value;
+end});
+local Slider = Tab:CreateSlider({Name="Hip Height",Range={0,50},Increment=1,Suffix="",CurrentValue=0,Flag="Slider3",Callback=function(Value)
+	game.Players.LocalPlayer.Character.Humanoid.HipHeight = Value;
+end});
+local Tab = Window:CreateTab("Tab #2", 4483362458);
+local Section = Tab:CreateSection("Section Others");
+local Button = Tab:CreateButton({Name="Exit Game",Callback=function()
+	game:Shutdown();
+end});
+local Button = Tab:CreateButton({Name="Unnamed Extra Sensory Perception",Callback=function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/ic3w0lf22/Unnamed-ESP/master/UnnamedESP.lua"))();
+end});
+local Button = Tab:CreateButton({Name="Tool Assisted Speedrun ",Callback=function()
+	local Running = false;
+	local Frames = {};
+	local TimeStart = tick();
+	local Player = game:GetService("Players").LocalPlayer;
+	local getChar = function()
+		local Character = Player.Character;
+		if Character then
+			return Character;
+		else
+			Player.CharacterAdded:Wait();
+			return getChar();
+		end
+	end;
+	local StartRecord = function()
+		Frames = {};
+		Running = true;
+		TimeStart = tick();
+		while Running == true do
+			game:GetService("RunService").Heartbeat:wait();
+			local Character = getChar();
+			table.insert(Frames, {Character.HumanoidRootPart.CFrame,Character.Humanoid:GetState().Value,(tick() - TimeStart)});
+		end
+	end;
+	local StopRecord = function()
+		Running = false;
+	end;
+	local PlayTAS = function()
+		local Character = getChar();
+		local TimePlay = tick();
+		local FrameCount = #Frames;
+		local NewFrames = FrameCount;
+		local OldFrame = 1;
+		local TASLoop;
+		TASLoop = game:GetService("RunService").Heartbeat:Connect(function()
+			local NewFrames = OldFrame + 60;
+			local CurrentTime = tick();
+			if ((CurrentTime - TimePlay) >= Frames[FrameCount][3]) then
+				TASLoop:Disconnect();
+			end
+			for i = OldFrame, NewFrames do
+				local Frame = Frames[i];
+				if (Frame[3] <= (CurrentTime - TimePlay)) then
+					OldFrame = i;
+					Character.HumanoidRootPart.CFrame = Frame[1];
+					Character.Humanoid:ChangeState(Frame[2]);
+				end
+			end
+		end);
+	end;
+	local Rayfield = loadstring(game:HttpGet("https://sirius.menu/rayfield"))();
+	local Window = Rayfield:CreateWindow({Name="Global TAS",LoadingTitle='\"its not working pls fix\"',LoadingSubtitle="by tomato.txt",ConfigurationSaving={Enabled=true,FolderName="tomato.txt",FileName="Global TAS by tomato.txt"},Discord={Enabled=true,Invite="8N2M9fHJqa",RememberJoins=true},KeySystem=false,KeySettings={Title="",Subtitle="",Note="",FileName="",SaveKey=true,GrabKeyFromSite=false,Key={""}}});
+	local Tab = Window:CreateTab("Control", 4483362458);
+	local Section = Tab:CreateSection("Save");
+	local Button = Tab:CreateButton({Name="Start recording",Callback=StartRecord});
+	local Button = Tab:CreateButton({Name="Stop recording.",Callback=StopRecord});
+	local Button = Tab:CreateButton({Name="Play",Callback=PlayTAS});
+	local Keybind = Tab:CreateKeybind({Name="Start Recording BIND",CurrentKeybind="",HoldToInteract=false,Flag="StartRecord",Callback=StartRecord});
+	local Keybind = Tab:CreateKeybind({Name="Stop Recording BIND",CurrentKeybind="",HoldToInteract=false,Flag="StopRecord",Callback=StopRecord});
+	local Keybind = Tab:CreateKeybind({Name="Play BIND",CurrentKeybind="",HoldToInteract=false,Flag="PlayTAS",Callback=PlayTAS});
+end});
+local Button = Tab:CreateButton({Name="Hop Server",Callback=function()
+	local Players = game.Players;
+	local httprequest = (syn and syn.request) or (http and http.request) or http_request or (fluxus and fluxus.request) or request;
+	local JobId = game.JobId;
+	local PlaceId = game.PlaceId;
+	local HttpService = game:GetService("HttpService");
+	if httprequest then
+		local servers = {};
+		local req = httprequest({Url=string.format("https://games.roblox.com/v1/games/%d/servers/Public?sortOrder=Desc&limit=100", PlaceId)});
+		local body = HttpService:JSONDecode(req.Body);
+		if (body and body.data) then
+			for i, v in next, body.data do
+				if ((type(v) == "table") and tonumber(v.playing) and tonumber(v.maxPlayers) and (v.playing < v.maxPlayers) and (v.id ~= JobId)) then
+					table.insert(servers, 1, v.id);
+				end
+			end
+		end
+		if (#servers > 0) then
+			TeleportService:TeleportToPlaceInstance(PlaceId, servers[math.random(1, #servers)], Players.LocalPlayer);
+		else
+			return print("Couldn't find a server.");
+		end
+	end
+end});
+local Button = Tab:CreateButton({Name="Reconnect",Callback=function()
+	local Players = game.Players;
+	local JobId = game.JobId;
+	local PlaceId = game.PlaceId;
+	if (#Players:GetPlayers() <= 1) then
+		Players.LocalPlayer:Kick("\nRejoining...");
+		wait();
+		TeleportService:Teleport(PlaceId, Players.LocalPlayer);
+	else
+		TeleportService:TeleportToPlaceInstance(PlaceId, JobId, Players.LocalPlayer);
+	end
+end});
+local Button = Tab:CreateButton({Name="Auto Reconnect",Callback=function()
+	local Dir = game.CoreGui:FindFirstChild("RobloxPromptGui"):FindFirstChild("promptOverlay");
+	local Players = game.Players;
+	local JobId = game.JobId;
+	local PlaceId = game.PlaceId;
+	local TeleportService = game:GetService("TeleportService");
+	Dir.DescendantAdded:Connect(function(Err)
+		if (Err.Name == "ErrorTitle") then
+			Err:GetPropertyChangedSignal("Text"):Connect(function()
+				if (Err.Text:sub(0, 12) == "Disconnected") then
+					if (#Players:GetPlayers() <= 1) then
+						Players.LocalPlayer:Kick("\nRejoining...");
+						wait();
+						TeleportService:Teleport(PlaceId, Players.LocalPlayer);
+					else
+						TeleportService:TeleportToPlaceInstance(PlaceId, JobId, Players.LocalPlayer);
+					end
+				end
+			end);
+		end
+	end);
+	print("Auto rejoin enabled");
+end});
+local Button = Tab:CreateButton({Name="Codes Redeem",Callback=function()
+	print('________________________________________________________________IGNORE "JD" CODE!__________________');
+	for h, i in pairs(game.ReplicatedStorage.Codes:GetChildren()) do
+		if i then
+			print(i.Name);
+		end
+	end
+end});
+local Tab = Window:CreateTab("Tab #3", 4483362458);
+local Section = Tab:CreateSection("Section Credits");
+local Label = Tab:CreateLabel("Uploaded by Creepstu, created by SKEPPY0_0MAN. To be the best, we need the best.");
+local Section = Tab:CreateSection("Section Info Buttons");
+local Paragraph = Tab:CreateParagraph({Title="Detect Suspicious Tools",Content="The button should be click once, it's a loop. The button is to know who murderer is and who sheriff is."});
+local Paragraph = Tab:CreateParagraph({Title="Unbox All Crates",Content="Will unbox the crates in the shop."});
+local Paragraph = Tab:CreateParagraph({Title="Teleport Lobby",Content="Do you know that it changes your character's coordinates to the lobby?"});
+local Paragraph = Tab:CreateParagraph({Title="Remove Game Hopper",Content="Get rid of the game teleporter."});
+local Paragraph = Tab:CreateParagraph({Title="Collect Coins",Content="Automatically collect all coins, but only if the round has begun."});
+local Paragraph = Tab:CreateParagraph({Title="Walk Speed",Content="If the walk speed exceeds 16, it may be referred to as 'hacking' by others."});
+local Paragraph = Tab:CreateParagraph({Title="Jump Power",Content="If the jump power exceeds 50, it may be referred to as 'hacking' by others."});
+local Paragraph = Tab:CreateParagraph({Title="Hip Height",Content="If the hip height exceeds 0, it may be referred to as 'hacking' by others."});
+local Paragraph = Tab:CreateParagraph({Title="Exit Game",Content="Leave the game if you are lazy to press Roblox logo."});
+local Paragraph = Tab:CreateParagraph({Title="Unnamed Extra Sensory Perception",Content="Just the same as RADAR. Tracking players behind a wall."});
+local Paragraph = Tab:CreateParagraph({Title="Tool Assisted Speedrun",Content="Have you ever animate a stickman? This is the example, 30%/70%."});
+local Paragraph = Tab:CreateParagraph({Title="Hop Server",Content="Go to another server without leaving the game, slowly but surely."});
+local Paragraph = Tab:CreateParagraph({Title="Reconnect",Content="Same meaning as rejoin, but it's Minecraft language."});
+local Paragraph = Tab:CreateParagraph({Title="Auto Reconnect",Content="Best, when you get kicked or disconnected, the button will help you to reconnect."});
+local Paragraph = Tab:CreateParagraph({Title="Codes Redeem",Content="Tell all the codes to redeem in the game console."});
